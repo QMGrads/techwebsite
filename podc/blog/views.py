@@ -10,3 +10,7 @@ def index(request):
         'latest_article_list': latest_article_list,
     }
     return HttpResponse(template.render(context, request))
+	
+def about(request):
+	template = loader.get_template('blog/about.html')
+	return HttpResponse(template.render(request))
