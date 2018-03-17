@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.template import loader
+from django.shortcuts import render
 
 from .models import Article
 
@@ -12,5 +13,4 @@ def index(request):
     return HttpResponse(template.render(context, request))
 	
 def about(request):
-	template = loader.get_template('blog/about.html')
-	return HttpResponse(template.render(request))
+	return render(request, 'blog/about.html')
