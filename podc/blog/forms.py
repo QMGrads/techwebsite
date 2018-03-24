@@ -1,8 +1,8 @@
 from django import forms
 
-from .models import Form
+from .models import Article
 
 class PostForm(forms.ModelForm):
     class Meta:
-	    model = Form
+	    model = Article
 	    fields = ('title', 'author', 'article_title')
