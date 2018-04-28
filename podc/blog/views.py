@@ -19,3 +19,6 @@ def about(request):
 def post_new(request):
     form = PostForm()
     return render(request, 'blog/articles.html', {'form': form})
+	
+def login(request):
+	return render(request, 'blog/Login.html')
