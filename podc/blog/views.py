@@ -22,3 +22,11 @@ def post_new(request):
 	
 def login(request):
 	return render(request, 'blog/Login.html')
+
+def article(request, article_id):
+    article_detail = Article.objects.get(pk=article_id)
+    template = loader.get_template('blog/article.html')
+    context = {
+        'article_detail': article_detail,
+    }
+    return HttpResponse(template.render(context, request))
