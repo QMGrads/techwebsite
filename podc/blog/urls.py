@@ -7,4 +7,5 @@ urlpatterns = [
 	url(r'^about', views.about, name='about'),
 	url(r'^login', views.login, name='login'),
 	url(r'^article/(?P<article_id>\d+)/$', views.article, name='article'),
+	url(r'^addarticle', views.addarticle, name='addarticle'),
 ]

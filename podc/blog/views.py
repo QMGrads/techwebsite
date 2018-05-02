@@ -30,3 +30,10 @@ def article(request, article_id):
         'article_detail': article_detail,
     }
     return HttpResponse(template.render(context, request))
+	
+def addarticle(request):
+	form = PostForm(request.POST or None)
+	if form.is_valid():
+		form.save()
+	context = {'form': form}
+	return render(request, 'blog/addarticle.html', context)
