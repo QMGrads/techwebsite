@@ -21,6 +21,28 @@ def post_new(request):
     return render(request, 'blog/articles.html', {'form': form})
 	
 def login(request):
+	""""
+	context = RequestContext(request)
+    if request.method == 'POST':
+          username = request.POST['username']
+          password = request.POST['password']
+          user = authenticate(username=username, password=password)
+          if user is not None:
+              if user.is_active:
+                  login(request, user)
+                  # Redirect to index page.
+                  return HttpResponseRedirect("blog/index.html")
+              else:
+                  # Return a 'disabled account' error message
+                  return HttpResponse("You're account is disabled.")
+          else:
+              # Return an 'invalid login' error message.
+              print  "invalid login details " + username + " " + password
+              return render_to_response('login.html', {}, context)
+    else:
+        # the login is a  GET request, so just show the user the login form.
+        return render_to_response('login.html', {}, context)
+		"""
 	return render(request, 'blog/Login.html')
 
 def article(request, article_id):
