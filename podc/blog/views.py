@@ -1,7 +1,7 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import render
-
+from django.contrib.auth import authenticate, login
 from .models import Article
 from .forms import PostForm
 
@@ -20,30 +20,21 @@ def post_new(request):
     form = PostForm()
     return render(request, 'blog/articles.html', {'form': form})
 	
-def login(request):
-	""""
-	context = RequestContext(request)
-    if request.method == 'POST':
-          username = request.POST['username']
-          password = request.POST['password']
-          user = authenticate(username=username, password=password)
-          if user is not None:
-              if user.is_active:
-                  login(request, user)
-                  # Redirect to index page.
-                  return HttpResponseRedirect("blog/index.html")
-              else:
-                  # Return a 'disabled account' error message
-                  return HttpResponse("You're account is disabled.")
-          else:
-              # Return an 'invalid login' error message.
-              print  "invalid login details " + username + " " + password
-              return render_to_response('login.html', {}, context)
+def login_user(request):
+  if request.method == 'POST':
+    username = request.POST.get("username")
+    password = request.POST.get("password")
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        if user.is_active:
+            print(user)
+            login(request, user)
+            return HttpResponseRedirect('/blog')
     else:
-        # the login is a  GET request, so just show the user the login form.
-        return render_to_response('login.html', {}, context)
-		"""
-	return render(request, 'blog/Login.html')
+        print("user does not exist")
+        return render(request, 'blog/Login.html')
+  else:
+    return render(request, 'blog/Login.html')
 
 def article(request, article_id):
     article_detail = Article.objects.get(pk=article_id)
