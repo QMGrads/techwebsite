@@ -30,7 +30,11 @@
 			      </li>
 				      
 			    </ul>
-			    <button type="button" onclick="location.href = '{% url 'login_user' %}';" class="btn btn-outline-light">Login</button>
+			    {% if user.is_authenticated %}
+			    	<button type="button" onclick="location.href = '{% url 'logout_user' %}';" class="btn btn-outline-light">Logout</button>
+			    {% else %}
+			    	<button type="button" onclick="location.href = '{% url 'login_user' %}';" class="btn btn-outline-light">Login</button>
+			    {% endif %}
 			  </div>
 			</nav>
 		</header>

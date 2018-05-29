@@ -6,14 +6,14 @@
 
 	{% block body %}
 		<table>
-		<form method='POST'>
-			{%csrf_token%}
-				{{form}}
-		<br>
-		<tr>
-		<td></td>
-		<td><input type='submit'></input></td>
-		</tr>
-		</form>
+			<form method='POST'>
+				{%csrf_token%}
+					{{form}}
+			<br>
+			<tr>
+			<td></td>
+			<td><input type='submit'></input></td>
+			</tr>
+			</form>
 		</table>
 	{% endblock %}

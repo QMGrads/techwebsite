@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .models import Article
 from .forms import PostForm
 
@@ -27,7 +27,6 @@ def login_user(request):
     user = authenticate(username=username, password=password)
     if user is not None:
         if user.is_active:
-            print(user)
             login(request, user)
             return HttpResponseRedirect('/blog')
     else:
@@ -35,6 +34,10 @@ def login_user(request):
         return render(request, 'blog/Login.html')
   else:
     return render(request, 'blog/Login.html')
+
+def logout_user(request):
+    logout(request)
+    return HttpResponseRedirect('/blog')
 
 def article(request, article_id):
     article_detail = Article.objects.get(pk=article_id)

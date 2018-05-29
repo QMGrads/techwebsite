@@ -6,7 +6,7 @@
 		{% if latest_article_list %}
 		    <ul>
 		    {% for article in latest_article_list %}
-		        <li><a href="/blog/article/{{ article.id }}">{{ article.title }}</a></li>
+		        <p><a href="/blog/article/{{ article.id }}">{{ article.title }}</a></p>
 		    {% endfor %}
 		    </ul>
 		{% else %}
