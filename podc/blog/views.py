@@ -2,6 +2,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+
 from .models import Article
 from .forms import PostForm
 
@@ -47,6 +49,7 @@ def article(request, article_id):
     }
     return HttpResponse(template.render(context, request))
 	
+@login_required(login_url='login_user')
 def addarticle(request):
 	form = PostForm(request.POST or None)
 	if form.is_valid():

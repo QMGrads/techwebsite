@@ -1,15 +1,23 @@
 {% extends 'blog/base.html' %}
 
 	{% block body %}
-		<h2>Welcome to Pod C homepage</h2>
+	<div class="container">
+		<div class="jumbotron">
+			<h2>Welcome to Pod C homepage</h2>
 
-		{% if latest_article_list %}
-		    <ul>
-		    {% for article in latest_article_list %}
-		        <p><a href="/blog/article/{{ article.id }}">{{ article.title }}</a></p>
-		    {% endfor %}
-		    </ul>
-		{% else %}
-		    <p>No polls are available.</p>
-		{% endif %}
+			{% if user.is_authenticated %}
+		<button type="button" onclick="location.href = '{% url 'addarticle' %}';" id="add-btn" class="btn btn-primary">Add Article</button>
+	{% endif %}
+		</div>
+	</div>
+
+	{% if latest_article_list %}
+	    <ul>
+	    {% for article in latest_article_list %}
+	        <p><a href="/blog/article/{{ article.id }}">{{ article.title }}</a></p>
+	    {% endfor %}
+	    </ul>
+	{% else %}
+	    <p>No polls are available.</p>
+	{% endif %}
 	{% endblock %}

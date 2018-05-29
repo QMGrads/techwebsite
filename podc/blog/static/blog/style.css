@@ -2,3 +2,12 @@ body{
 	background: white;
 	text-align: center;
 }
+
+ul{
+	margin: 5px;
+}
+
+#add-btn{
+	text-align: center;
+	margin: 20px 5px;
+}
