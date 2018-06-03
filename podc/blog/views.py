@@ -51,7 +51,7 @@ def article(request, article_id):
 	
 @login_required(login_url='login_user')
 def addarticle(request):
-	form = PostForm(request.POST or None)
+	form = PostForm(request.POST, request.FILES)
 	if form.is_valid():
 		form.save()
 	context = {'form': form}

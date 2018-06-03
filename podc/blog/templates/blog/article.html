@@ -9,5 +9,9 @@
 		<br>
 		<h4>{{article_detail.author}}</h4>
 		<br>
-		<p>{{article_detail.article_title}}</p>	
+		{% if article_detail.article_image %}
+			<img src="{{ article_detail.article_image.url }}" width="240">
+		{% else %}
+		{% endif %}
+		<p>{{article_detail.article_title}}</p>
 	{% endblock %}

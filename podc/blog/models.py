@@ -6,6 +6,7 @@ class Article(models.Model):
 	title = models.CharField(max_length=200)
 	author = models.CharField(max_length=100)
 	article_title = models.TextField()
+	article_image = models.ImageField(upload_to='article_image', blank=True)
 	
 class User(models.Model):
 	username = models.CharField(max_length=20)
