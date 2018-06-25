@@ -1,8 +1,10 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
-from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import UpdateView, DeleteView
 
 from .models import Article
 from .forms import PostForm
@@ -54,5 +56,17 @@ def addarticle(request):
 	form = PostForm(request.POST, request.FILES)
 	if form.is_valid():
 		form.save()
+		return HttpResponseRedirect('/blog')
 	context = {'form': form}
 	return render(request, 'blog/addarticle.html', context)
+
+class editarticle(UpdateView):
+    model = Article
+    fields = ('title', 'author', 'article_title', 'article_image')
+    template_name = 'blog/addarticle.html'
+    success_url = reverse_lazy('index')
+
+def deletearticle(request, pk):
+	article = get_object_or_404(Article, id=pk)
+	article.delete()
+	return HttpResponseRedirect('/blog')

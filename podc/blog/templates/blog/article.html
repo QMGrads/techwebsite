@@ -14,4 +14,9 @@
 		{% else %}
 		{% endif %}
 		<p>{{article_detail.article_title}}</p>
+
+		<form action="{% url 'deletearticle' article_detail.id %}" method="post">
+			{% csrf_token %}
+			<button type="submit" id="delete-btn" class="btn btn-danger">Delete Article</button>
+		</form>
 	{% endblock %}
