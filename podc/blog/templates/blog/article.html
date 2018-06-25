@@ -15,8 +15,6 @@
 		{% endif %}
 		<p>{{article_detail.article_title}}</p>
 
-		<form action="{% url 'deletearticle' article_detail.id %}" method="post">
-			{% csrf_token %}
-			<button type="submit" id="delete-btn" class="btn btn-danger">Delete Article</button>
-		</form>
+		<button type="button" onclick="location.href = '{% url 'editarticle' article_detail.id %}';" id="edit-btn" class="btn btn-primary">Edit Article</button>
+		<button type="submit" onclick="location.href = '{% url 'deletearticle' article_detail.id %}';" id="delete-btn" class="btn btn-danger">Delete Article</button>
 	{% endblock %}
