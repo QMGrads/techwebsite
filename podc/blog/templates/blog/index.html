@@ -16,7 +16,11 @@
 		<div class="row" id="index-list">
 			{% for article in latest_article_list|slice:"3" %}
 	          <div class="col-lg-4">
+				{% if article.article_image %}
 	            <img class="rounded-circle" src="{{ article.article_image.url }}" alt="Generic placeholder image" width="140" height="140">
+				{% else %}
+				<img class="rounded-circle" src="https://images.pexels.com/photos/917479/pexels-photo-917479.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" width="140" height="140">
+				{% endif %}
 	            <h2>{{ article.title }}</h2>
 	            <div id="art-detail">{{article.article_title|stringformat:".160s"}}...</div>
 	            <p><a class="btn btn-secondary" href="/blog/article/{{ article.id }}">View details</a></p>

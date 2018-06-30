@@ -17,6 +17,6 @@
 		
 		{% if user.is_authenticated %}
 		<button type="button" onclick="location.href = '{% url 'editarticle' article_detail.id %}';" id="edit-btn" class="btn btn-primary">Edit Article</button>
-		<button type="submit" onclick="location.href = '{% url 'deletearticle' article_detail.id %}';" id="delete-btn" class="btn btn-danger">Delete Article</button>
+		<button type="submit" onclick="if(confirm('Are you sure you want to delete this?')){location.href = '{% url 'deletearticle' article_detail.id %}'};" id="delete-btn" class="btn btn-danger">Delete Article</button>
 		{% endif %}
 	{% endblock %}
