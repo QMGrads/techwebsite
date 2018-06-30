@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Article
 from .forms import PostForm
@@ -60,12 +61,13 @@ def addarticle(request):
 	context = {'form': form}
 	return render(request, 'blog/addarticle.html', context)
 
-class editarticle(UpdateView):
+class editarticle(LoginRequiredMixin, UpdateView):
     model = Article
     fields = ('title', 'author', 'article_title', 'article_image')
     template_name = 'blog/addarticle.html'
     success_url = reverse_lazy('index')
 
+@login_required(login_url='login_user')
 def deletearticle(request, pk):
 	article = get_object_or_404(Article, id=pk)
 	article.delete()
