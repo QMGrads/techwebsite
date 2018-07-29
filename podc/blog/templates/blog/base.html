@@ -26,7 +26,6 @@
 			      <li class="nav-item">
 			        <a class="nav-link" href="{% url 'about'%}">About Us</a>
 			      </li>
-				      
 			    </ul>
 			    {% if user.is_authenticated %}
 			    	<button type="button" onclick="location.href = '{% url 'logout_user' %}';" class="btn btn-outline-light">Logout</button>

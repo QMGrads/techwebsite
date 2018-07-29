@@ -5,6 +5,7 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
 	url(r'^about', views.about, name='about'),
+	url(r'^morearticles', views.morearticles, name='morearticles'),
 	url(r'^login', views.login_user, name='login_user'),
 	url(r'^logout', views.logout_user, name='logout_user'),
 	url(r'^article/(?P<article_id>\d+)/$', views.article, name='article'),
